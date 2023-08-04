@@ -1,11 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { AuthContext } from './context/AuthContext';
+import React, { useContext } from 'react';
 function App() {
+  const { isLogged } = useContext(AuthContext);
+  console.log(isLogged);
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
