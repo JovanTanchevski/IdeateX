@@ -47,7 +47,7 @@ const TeamGeneratorSection = () => {
         pizzas devoured during creative storms, and a team united in
         innovation—our story, written by each participant's brilliance.
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pb-24 border-b">
         {TeamGeneratorData.map((item) => (
           <TeamCard
             key={item.title}
