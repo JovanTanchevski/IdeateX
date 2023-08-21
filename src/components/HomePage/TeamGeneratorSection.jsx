@@ -27,7 +27,7 @@ const TeamGeneratorData = [
 const TeamGeneratorSection = () => {
   const TeamCard = ({ Icon, number, title }) => {
     return (
-      <div className="border-2 py-6 px-10 ">
+      <div className="border-2 py-6 px-10 rounded-md">
         <div className="flex flex-col items-center hover:scale-75 transition duration-300">
           <Icon className="text-6xl mb-3 text-indigo-500" />
           <h2 className="text-2xl font-bold">
