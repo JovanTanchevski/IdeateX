@@ -3,6 +3,7 @@ import React from 'react';
 import Header from './components/Header/Header';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import HomePage from './Pages/HomePage';
+import SingleEventPage from './Pages/Single-Event-Page/SingleEventPage';
 function App() {
   const location = useLocation();
   return (
@@ -10,7 +11,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/event/:eventID" element={<p>THIS IS SINGLE PAGE</p>} />
+        <Route path="/event/:eventID" element={<SingleEventPage />} />
         <Route path="/about" element={<p>About</p>} />
         <Route path="/login" element={<p>Login Page</p>} />
         <Route
