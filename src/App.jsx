@@ -10,6 +10,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/event/:eventID" element={<p>THIS IS SINGLE PAGE</p>} />
         <Route path="/about" element={<p>About</p>} />
         <Route path="/login" element={<p>Login Page</p>} />
         <Route
