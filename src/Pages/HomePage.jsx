@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import BannerSection from '../components/HomePage/BannerSection';
 import '../components/HomePage/Styles/HomePage.css';
 import TeamGeneratorSection from '../components/HomePage/TeamGeneratorSection';
-import { HackatonsSection } from '../components/HomePage/Hackathons-Section/HackatonsSection';
+const HackathonsSection = React.lazy(() =>
+  import('../components/HomePage/Hackathons-Section/HackatonsSection')
+);
 
 const HomePage = () => {
   const [hackathons, setHackathons] = useState([]);
@@ -16,7 +18,15 @@ const HomePage = () => {
     <React.Fragment>
       <BannerSection />
       <TeamGeneratorSection />
-      <HackatonsSection hackathonsDB={hackathons} />
+      <React.Suspense
+        fallback={
+          <div className="text-center mt-8">
+            <h1 className="text-4xl font-bold">Loading...</h1>
+          </div>
+        }
+      >
+        <HackathonsSection hackathonsDB={hackathons} />
+      </React.Suspense>
     </React.Fragment>
   );
 };
