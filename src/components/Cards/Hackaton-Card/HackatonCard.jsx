@@ -1,17 +1,21 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 export const HackatonCard = ({
   cardImage,
   hackathonTitle,
   hackathonDesc,
   hackathonOrganization,
   hackathonLocation,
+  cardId,
 }) => {
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg ">
+    <Link
+      to={`/event/${cardId}`}
+      className="max-w-sm rounded overflow-hidden shadow-lg "
+    >
       <img
         className="w-full max-h-40"
-        src={'https://picsum.photos/200'}
+        src={cardImage ? cardImage : 'https://picsum.photos/200'}
         alt="Hackathon Card"
       />
       <div className="px-6 py-4">
@@ -33,6 +37,6 @@ export const HackatonCard = ({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
