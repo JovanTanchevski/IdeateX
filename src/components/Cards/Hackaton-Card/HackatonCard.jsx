@@ -11,7 +11,7 @@ export const HackatonCard = ({
   return (
     <Link
       to={`/event/${cardId}`}
-      className="max-w-sm rounded overflow-hidden shadow-lg "
+      className="max-w-sm mx-auto rounded overflow-hidden shadow-lg "
     >
       <img
         className="w-full max-h-40"
