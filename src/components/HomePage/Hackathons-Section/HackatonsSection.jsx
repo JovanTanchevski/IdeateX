@@ -23,7 +23,7 @@ const HackathonsSection = ({ hackathonsDB }) => {
       <div className="flex justify-center py-12">
         <Link
           to={'/'}
-          class="bg-indigo-900 hover:bg-indigo-700 text-white font-bold py-2 px-20 border border-blue-700 rounded  "
+          className="bg-indigo-900 hover:bg-indigo-700 text-white font-bold py-2 px-20 border border-blue-700 rounded  "
         >
           See All
         </Link>
