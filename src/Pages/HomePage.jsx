@@ -8,7 +8,6 @@ const HackathonsSection = React.lazy(() =>
 
 const HomePage = () => {
   const [hackathons, setHackathons] = useState([]);
-  console.log(hackathons);
   useEffect(() => {
     fetch('http://localhost:4000/hackathons?_limit=4')
       .then((res) => res.json())
