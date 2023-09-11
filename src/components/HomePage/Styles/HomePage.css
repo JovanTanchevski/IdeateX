@@ -1,0 +1,5 @@
+.banner-section {
+  background-image: url('../../../images/banner-bg-img.svg');
+  background-size: cover;
+  background-position: center;
+}
