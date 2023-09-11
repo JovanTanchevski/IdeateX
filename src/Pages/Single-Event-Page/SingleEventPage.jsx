@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Error404Page from '../../components/404Page/Error404Page';
 
 const SingleEventPage = () => {
   const [singleEvent, setSingleEvent] = useState({});
-  const location = useLocation();
-  const eventID = location.pathname.replace('/event/', '');
 
+  const params = useParams();
+  const eventID = params.eventID;
   useEffect(() => {
     if (eventID) {
       fetch(`http://localhost:4000/hackathons?id=${eventID}`)
@@ -26,7 +26,6 @@ const SingleEventPage = () => {
         });
     }
   }, [eventID]);
-
   return (
     <div>
       {singleEvent ? (
