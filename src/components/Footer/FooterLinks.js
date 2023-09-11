@@ -17,7 +17,7 @@ export const AboutUsFooterData = [
     linkTo: '/',
   },
   {
-    name: 'Terms and Contidions',
+    name: 'Terms and Conditions',
     linkTo: '/',
   },
   {
@@ -59,43 +59,51 @@ export const SocialMediaIconsListData = [
 ];
 export const RenderFooterDiv = ({ title, arr }) => {
   return (
-    <div className="flex-1">
-      <h2 className="text-xl font-semibold mb-4">{title}</h2>
-      <ul>
-        {arr &&
-          arr.length > 0 &&
-          arr.map((item) => {
-            return (
-              <li key={item.name}>
-                <Link to={item.linkTo} className="hover:text-xl transition">
-                  {item.name}
-                </Link>
-              </li>
-            );
-          })}
-      </ul>
+    <div className="grid w-3/4 grid-cols-1 gap-4 sm:w-full">
+      <div className="col-span-1">
+        <h2 className="text-4xl sm:text-2xl font-bold mb-4">{title}</h2>
+        <ul>
+          {arr &&
+            arr.length > 0 &&
+            arr.map((item) => {
+              return (
+                <li key={item.name}>
+                  <Link
+                    to={item.linkTo}
+                    className="hover:border-b-2  transition font-semibold"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              );
+            })}
+        </ul>
+      </div>
     </div>
   );
 };
+
 export const RenderSocialLinks = ({ arr, title }) => {
   return (
-    <div className="flex-1">
-      <h2 className="text-xl font-semibold mb-4">{title}</h2>
-      <div className="flex space-x-2">
-        {arr &&
-          arr.length > 0 &&
-          arr.map((item) => {
-            return (
-              <Link
-                key={item.socialMediaIcon}
-                target="_blank"
-                to={item.socialMediaLink}
-                className="hover:scale-150 transition"
-              >
-                <item.socialMediaIcon className="mr-2" size={20} />
-              </Link>
-            );
-          })}
+    <div className="grid w-3/4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:w-full">
+      <div className="col-span-1">
+        <h2 className="text-4xl sm:text-2xl font-bold mb-4">{title}</h2>
+        <div className="flex space-x-2">
+          {arr &&
+            arr.length > 0 &&
+            arr.map((item) => {
+              return (
+                <Link
+                  key={item.socialMediaIcon}
+                  target="_blank"
+                  to={item.socialMediaLink}
+                  className="hover:scale-150 transition"
+                >
+                  <item.socialMediaIcon className="mr-2" size={20} />
+                </Link>
+              );
+            })}
+        </div>
       </div>
     </div>
   );
