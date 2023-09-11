@@ -38,26 +38,26 @@ export const ContactUsFooterData = [
 export const SocialMediaIconsListData = [
   {
     socialMediaLink: 'https://www.instagram.com',
-    socialMediaIcon: '<FaInstagram />',
+    socialMediaIcon: FaInstagram,
   },
   {
-    socialMediaLink: 'https://www.instagram.com',
-    socialMediaIcon: '<FaInstagram />',
+    socialMediaLink: 'https://www.youtube.com',
+    socialMediaIcon: FaYoutube,
   },
   {
-    socialMediaLink: 'https://www.instagram.com',
-    socialMediaIcon: '<FaInstagram />',
+    socialMediaLink: 'https://www.x.com',
+    socialMediaIcon: FaTwitter,
   },
   {
-    socialMediaLink: 'https://www.instagram.com',
-    socialMediaIcon: '<FaInstagram />',
+    socialMediaLink: 'https://www.linkedin.com/in/jovantanchevski/',
+    socialMediaIcon: FaLinkedin,
   },
   {
-    socialMediaLink: 'https://www.instagram.com',
-    socialMediaIcon: '<FaInstagram />',
+    socialMediaLink: 'https://www.facebook.com',
+    socialMediaIcon: FaFacebook,
   },
 ];
-export const RenderFooterDiv = ({ title, arr, socialLinks }) => {
+export const RenderFooterDiv = ({ title, arr }) => {
   return (
     <div className="flex-1">
       <h2 className="text-xl font-semibold mb-4">{title}</h2>
@@ -66,8 +66,10 @@ export const RenderFooterDiv = ({ title, arr, socialLinks }) => {
           arr.length > 0 &&
           arr.map((item) => {
             return (
-              <li key={item.name} className="hover:text-xl transition  ">
-                <Link to={item.linkTo}>{item.name}</Link>
+              <li key={item.name}>
+                <Link to={item.linkTo} className="hover:text-xl transition">
+                  {item.name}
+                </Link>
               </li>
             );
           })}
@@ -75,7 +77,7 @@ export const RenderFooterDiv = ({ title, arr, socialLinks }) => {
     </div>
   );
 };
-export const RenderSocialLinks = ({ arr, title, Icon }) => {
+export const RenderSocialLinks = ({ arr, title }) => {
   return (
     <div className="flex-1">
       <h2 className="text-xl font-semibold mb-4">{title}</h2>
@@ -84,8 +86,13 @@ export const RenderSocialLinks = ({ arr, title, Icon }) => {
           arr.length > 0 &&
           arr.map((item) => {
             return (
-              <Link key={item.socialMediaIcon} to={item.socialMediaLink}>
-                <Icon size={20} />
+              <Link
+                key={item.socialMediaIcon}
+                target="_blank"
+                to={item.socialMediaLink}
+                className="hover:scale-150 transition"
+              >
+                <item.socialMediaIcon className="mr-2" size={20} />
               </Link>
             );
           })}
