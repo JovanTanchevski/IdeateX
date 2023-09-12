@@ -4,8 +4,8 @@ import { AuthContext } from '../../context/AuthContext';
 import LogoImage from '../../images/IdeateXLogo.png';
 import { NavLink } from 'react-router-dom';
 const Header = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { isLogged } = React.useContext(AuthContext);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
