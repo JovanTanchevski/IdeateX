@@ -5,23 +5,30 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
+  const [adminUsers, setAdminUsers] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     const storedIsLogged = localStorage.getItem('isLogged');
     if (storedIsLogged) {
       setIsLogged(JSON.parse(storedIsLogged));
     }
+    fetch('http://localhost:4000/admin_users')
+      .then((res) => res.json())
+      .then((data) => setAdminUsers(data));
   }, []);
+  const onLoginHandleClick = (inputUsername, inputPassword) => {
+    const matchedUser = adminUsers.find(
+      ({ username, password }) =>
+        username === inputUsername && password === inputPassword
+    );
 
-  const onLoginHandleClick = (username, password) => {
-    // In a real app, you would perform authentication here
-    // For this example, let's just assume a simple check
-    if (username === 'admin@ideate.com' && password === 'ideateX123') {
+    if (matchedUser) {
       setIsLogged(true);
       localStorage.setItem('isLogged', JSON.stringify(true));
-      console.log(username, password);
       navigate('/');
+      return;
     }
+    return;
   };
 
   const onLogOutHandleClick = () => {
