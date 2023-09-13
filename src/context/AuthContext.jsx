@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
   const [adminUsers, setAdminUsers] = useState([]);
   const navigate = useNavigate();
+
   useEffect(() => {
     const storedIsLogged = localStorage.getItem('isLogged');
     if (storedIsLogged) {
@@ -16,6 +17,7 @@ export const AuthProvider = ({ children }) => {
       .then((res) => res.json())
       .then((data) => setAdminUsers(data));
   }, []);
+
   const onLoginHandleClick = (inputUsername, inputPassword) => {
     const matchedUser = adminUsers.find(
       ({ username, password }) =>
@@ -26,15 +28,16 @@ export const AuthProvider = ({ children }) => {
       setIsLogged(true);
       localStorage.setItem('isLogged', JSON.stringify(true));
       navigate('/');
-      return;
+      return true; // Login successful
     }
-    return;
+
+    return false; // Login failed
   };
 
   const onLogOutHandleClick = () => {
     setIsLogged(false);
     localStorage.removeItem('isLogged');
-    navigate('/');
+    navigate('/login');
   };
 
   return (

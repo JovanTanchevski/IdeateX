@@ -3,52 +3,31 @@ import { AuthContext } from '../../context/AuthContext';
 
 const LoginPage = () => {
   const { onLoginHandleClick } = useContext(AuthContext);
-  const [showUserModal, setShowUserModal] = useState(false);
-  const [user, setUser] = useState({
-    username: '',
-    password: '',
-  });
-  const [userAuth, setUserAuth] = useState({
-    usernameValidation: true,
-    passwordValidation: true,
-  });
-  const onUsernameChange = (event) => {
-    setUser({
-      ...user,
-      username: event.currentTarget.value,
-    });
-  };
-  const onPasswordChange = (event) => {
-    setUser({
-      ...user,
-      password: event.currentTarget.value,
-    });
-  };
+  const [user, setUser] = useState({ username: '', password: '' });
+  const [validationErrors, setValidationErrors] = useState({});
+
   const onFormSubmit = (event) => {
     event.preventDefault();
+    const { username, password } = user;
 
-    setUserAuth({
-      usernameValidation: true,
-      passwordValidation: true,
-    });
-
-    if (user.password.length <= 8) {
-      setUserAuth({
-        ...userAuth,
-        passwordValidation: false,
+    if (
+      !username ||
+      username.length <= 7 ||
+      !password ||
+      password.length <= 8
+    ) {
+      setValidationErrors({
+        username: username.length <= 7,
+        password: password.length <= 8,
       });
+      return;
     }
 
-    if (user.username.length <= 7) {
-      setUserAuth({
-        ...userAuth,
-        usernameValidation: false,
-      });
-    }
+    // Clear validation errors
+    setValidationErrors({});
 
-    if (userAuth.usernameValidation && userAuth.passwordValidation) {
-      onLoginHandleClick(user.username, user.password);
-    }
+    // Perform login
+    onLoginHandleClick(username, password);
   };
 
   return (
@@ -60,14 +39,19 @@ const LoginPage = () => {
           </label>
           <input
             className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-              userAuth.usernameValidation ? '' : 'border-red-500'
+              validationErrors.username ? 'border-red-500' : ''
             }`}
             id="username"
             type="text"
             placeholder="Enter username here"
             value={user.username}
-            onChange={onUsernameChange}
+            onChange={(e) => setUser({ ...user, username: e.target.value })}
           />
+          {validationErrors.username && (
+            <small className="text-red-500 text-xs italic">
+              Please enter a valid username.
+            </small>
+          )}
         </div>
         <div className="mb-6">
           <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -75,42 +59,21 @@ const LoginPage = () => {
           </label>
           <input
             className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline ${
-              userAuth.passwordValidation ? '' : 'border-red-500'
+              validationErrors.password ? 'border-red-500' : ''
             }`}
             id="password"
             type="password"
             placeholder="Enter password here"
-            onChange={onPasswordChange}
             value={user.password}
+            onChange={(e) => setUser({ ...user, password: e.target.value })}
           />
-          {!userAuth.passwordValidation && (
+          {validationErrors.password && (
             <small className="text-red-500 text-xs italic">
-              Please choose a password.
+              Please choose a valid password.
             </small>
           )}
         </div>
 
-        <div className="flex justify-end">
-          <button
-            className="inline-block align-baseline font-bold text-sm text-indigo-500 hover:text-indigo-800"
-            onClick={(e) => {
-              e.preventDefault();
-              setShowUserModal(!showUserModal);
-            }}
-          >
-            {showUserModal ? 'Close' : 'Forgot Password ?'}
-          </button>
-        </div>
-        {showUserModal && (
-          <div>
-            <p className="text-xl">
-              Username : <span className="italic">admin@ideate.com</span>
-            </p>
-            <p className="text-xl">
-              Password : <span className="italic">ideateX123</span>
-            </p>
-          </div>
-        )}
         <button
           className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 w-full my-5 rounded focus:outline-none focus:shadow-outline"
           type="button"
