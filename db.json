@@ -7599,5 +7599,23 @@
         }
       ]
     }
+  ],
+  "admin_users": [
+    {
+      "username": "admin@ideate.com",
+      "password": "ideateX123"
+    },
+    {
+      "username": "andrejveljanovski@admin.ideate",
+      "password": "veljanovski123"
+    },
+    {
+      "username": "jovantanchevski@admin.ideate",
+      "password": "jovan123"
+    },
+    {
+      "username": "hristijanbogdanovski@admin.ideate",
+      "password": "hristijan123"
+    }
   ]
 }
