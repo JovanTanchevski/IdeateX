@@ -1,22 +1,12 @@
 import React from 'react';
-import { AuthContext } from '../../../context/AuthContext';
-import NavLinks from './NavLinks';
 
 const Sidebar = ({ isOpen, onToggleSidebar }) => {
-  const { isLogged, onLoginHandleClick, onLogOutHandleClick } =
-    React.useContext(AuthContext);
-
   return (
     <div
       className={`fixed top-0 right-0 h-full w-64 bg-indigo-500 p-4 text-white transform ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       } transition-transform duration-300 ease-in-out`}
     >
-      <NavLinks
-        isLogged={isLogged}
-        onLogOutHandleClick={onLogOutHandleClick}
-        onLoginHandleClick={onLoginHandleClick}
-      />
       <button
         className="text-white absolute top-4 right-4 md:hidden"
         onClick={onToggleSidebar}
