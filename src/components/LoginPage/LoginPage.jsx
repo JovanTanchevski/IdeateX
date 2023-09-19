@@ -32,7 +32,7 @@ const LoginPage = () => {
 
   return (
     <div className="w-full w-1/2 py-12 mx-auto">
-      <form className="bg-white shadow rounded px-8 py-12 mb-4">
+      <form className="bg-white shadow rounded px-8 py-12 mb-4 sm:max-w-xl mx-auto">
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Username
