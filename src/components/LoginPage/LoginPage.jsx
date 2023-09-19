@@ -14,13 +14,12 @@ const LoginPage = () => {
       !username ||
       username.length <= 7 ||
       !password ||
-      password.length <= 8
+      password.length <= 5
     ) {
       setValidationErrors({
         username: username.length <= 7,
-        password: password.length <= 8,
+        password: password.length <= 5,
       });
-      return;
     }
 
     // Clear validation errors

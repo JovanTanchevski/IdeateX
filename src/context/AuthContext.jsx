@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
     if (matchedUser) {
       setIsLogged(true);
       localStorage.setItem('isLogged', JSON.stringify(true));
-      navigate('/');
+      navigate('/admin-panel/dashboard');
       return true; // Login successful
     }
 
